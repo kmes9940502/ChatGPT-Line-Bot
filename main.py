@@ -229,11 +229,8 @@ def home():
 
 
 if __name__ == "__main__":
-    if os.getenv('USE_MONGO'):
-        mongodb.connect_to_database()
-        storage = Storage(MongoStorage(mongodb.db))
-    else:
-        storage = Storage(FileStorage('db.json'))
+    mongodb.connect_to_database()
+    storage = Storage(MongoStorage(mongodb.db))
     try:
         data = storage.load()
         #註冊open AI model
