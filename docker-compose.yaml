@@ -10,11 +10,8 @@ services:
     depends_on:
       - mongo
   mongo:
-    image: mongo
+    image: mongo:4.2-bionic
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: cqnhfnKw7
     ports:
       - 27017:27017
     volumes:
