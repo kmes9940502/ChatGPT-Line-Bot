@@ -14,6 +14,7 @@ class MongoDB():
 
     def connect_to_database(self, mongo_path=None, db_name=None):
         mongo_path = mongo_path or os.getenv('MONGODB__PATH')
+        mongo_path = "mongodb://root:cqnhfnKw7@mongo:27017/"
         db_name = db_name or os.getenv('MONGODB__DBNAME')
         self.client = MongoClient(mongo_path)
         assert self.client.config.command('ping')['ok'] == 1.0
