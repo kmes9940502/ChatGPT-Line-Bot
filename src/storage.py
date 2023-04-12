@@ -50,7 +50,6 @@ class MongoStorage:
     def IsInDatabase(self, id):
         logger.info(f'call IsInDatabase: {id}')
         res = self.db['api_key'].find_one({'user_id':id})
-        logger.info(res)
         if res != None:
             return True
         else:
@@ -61,7 +60,6 @@ class MongoStorage:
     def GetMember(self, id):
         logger.info('call GetMember')
         res = self.db['api_key'].find_one({'user_id':id})
-        logger.info(res)
         if res != None :
             return res['is_member']
         else:
