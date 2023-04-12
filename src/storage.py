@@ -40,7 +40,7 @@ class MongoStorage:
     def GetUserAPIKey(self, id):
         logger.info('call GetUserAPIKey')
         res = self.db['api_key'].find_one({'user_id':id})
-        if res:
+        if res!= None:
             return res['api_key']
         else:
             return "Error"
@@ -50,7 +50,7 @@ class MongoStorage:
         logger.info('call IsInDatabase')
         res = self.db['api_key'].find_one({'user_id':id})
         logger.info(res)
-        if res:
+        if res != None:
             return True
         else:
             return False
@@ -61,7 +61,7 @@ class MongoStorage:
         logger.info('call GetMember')
         res = self.db['api_key'].find_one({'user_id':id})
         logger.info(res)
-        if res:
+        if res != None:
             return res['is_member']
         else:
             return False
