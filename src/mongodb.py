@@ -17,7 +17,7 @@ class MongoDB():
         db_name = db_name or os.getenv('MONGODB__DBNAME')
         self.client = MongoClient(mongo_path,server_api=ServerApi('1'))
         try:
-            client.admin.command('ping')
+            self.client.admin.command('ping')
             print("Pinged your deployment. You successfully connected to MongoDB!")
         except Exception as e:
             print(e)
