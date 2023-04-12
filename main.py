@@ -63,6 +63,7 @@ def handle_text_message(event):
         if storage.IsInDatabase(user_id):
             logger.info('FirstTimeUse')
             api_key = str(uuid.uuid4())
+            logger.info(f'{user_id}: {api_key}')
             storage.save({
                 user_id: api_key
             })
