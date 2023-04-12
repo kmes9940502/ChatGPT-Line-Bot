@@ -33,6 +33,7 @@ class MongoStorage:
             '$set': {
                 'user_id': user_id,
                 'api_key': api_key,
+                'is_member': False,
                 'created_at': datetime.datetime.utcnow()
             }
         }, upsert=True)
@@ -51,10 +52,8 @@ class MongoStorage:
         res = self.db['api_key'].find_one({'user_id':id})
         logger.info(res)
         if res != None:
-            logger.info("return True")
             return True
         else:
-            logger.info("return false")
             return False
 
         
@@ -63,7 +62,7 @@ class MongoStorage:
         logger.info('call GetMember')
         res = self.db['api_key'].find_one({'user_id':id})
         logger.info(res)
-        if res != None:
+        if res != None :
             return res['is_member']
         else:
             return False

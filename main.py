@@ -118,6 +118,7 @@ def handle_text_message(event):
                 else:
                     raise Exception('Member not found')
             else:
+                
                 raise KeyError('User auth error')
 
         elif text.startswith('/指令說明'):
