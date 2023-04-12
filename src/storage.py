@@ -47,12 +47,14 @@ class MongoStorage:
             
         
     def IsInDatabase(self, id):
-        logger.info('call IsInDatabase')
+        logger.info(f'call IsInDatabase: {id}')
         res = self.db['api_key'].find_one({'user_id':id})
         logger.info(res)
         if res != None:
+            logger.info("return True")
             return True
         else:
+            logger.info("return false")
             return False
 
         
