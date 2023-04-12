@@ -1,6 +1,6 @@
 import json
 import datetime
-import sys
+from src.logger import logger
 
 
 class FileStorage:
@@ -44,7 +44,7 @@ class MongoStorage:
             else:
                 return "Error"
         except Exception as e:
-            print("GetUserAPIKey",file=sys.stderr)
+            logger.info('GetUserAPIKey crash')
         
     def IsInDatabase(self, id):
         try:
@@ -54,7 +54,7 @@ class MongoStorage:
             else:
                 return False
         except Exception as e:
-            print("IsInDatabase",file=sys.stderr)
+            logger.info('IsInDatabase crash')
             
     def GetMember(self, id):
         try:
@@ -64,7 +64,7 @@ class MongoStorage:
             else:
                 return False
         except Exception as e:
-            print("GetMember",file=sys.stderr)
+            logger.info('GetMember crash')
             
     def SetMember(self, data):
         try:
@@ -78,7 +78,7 @@ class MongoStorage:
                 }
             }, upsert=True)
         except Exception as e:
-            print("SetMember",file=sys.stderr)               
+            logger.info('SetMember crash')          
         
     def DeleteMember(self, data):
         try:
@@ -91,7 +91,7 @@ class MongoStorage:
                 }
             }, upsert=True)
         except Exception as e:
-            print("DeleteMember",file=sys.stderr)
+            logger.info('DeleteMember crash')
             
     def load(self):
         data = list(self.db['api_key'].find())
