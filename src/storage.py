@@ -92,3 +92,18 @@ class Storage:
 
     def load(self):
         return self.storage.load()
+    
+    def GetUserAPIKey(self, id):
+        return self.storage.GetUserAPIKey(id)
+        
+    def IsInDatabase(self, id):
+        return self.storage.IsInDatabase(id)
+    
+    def GetMember(self, data):
+        return self.storage.GetMember(data)
+
+    def SetMember(self, data):
+        return self.storage.SetMember(data)
+        
+    def DeleteMember(self, data):
+        return self.storage.DeleteMember(data)
