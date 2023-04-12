@@ -18,7 +18,7 @@ class MongoDB():
         db_name = db_name or os.getenv('MONGODB__DBNAME')
         self.client = MongoClient(mongo_path)
         assert self.client.config.command('ping')['ok'] == 1.0
-        self.db = self.client[db_name]
+        #self.db = self.client[db_name]
 
 
 mongodb = MongoDB()
