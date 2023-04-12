@@ -25,6 +25,7 @@ class MongoStorage:
         self.db = db
 
     def save(self, data):
+        logger.info('call save')
         user_id, api_key = list(data.items())[0]
         self.db['api_key'].update_one({
             'user_id': user_id
@@ -37,63 +38,58 @@ class MongoStorage:
         }, upsert=True)
 
     def GetUserAPIKey(self, id):
-        try:
-            res = self.db['api_key'].find_one({'user_id':id})
-            if res:
-                return res['api_key']
-            else:
-                return "Error"
-        except Exception as e:
-            logger.info('GetUserAPIKey crash')
+        logger.info('call GetUserAPIKey')
+        res = self.db['api_key'].find_one({'user_id':id})
+        if res:
+            return res['api_key']
+        else:
+            return "Error"
+            
         
     def IsInDatabase(self, id):
-        try:
-            res = self.db['api_key'].find_one({'user_id':id})
-            if res:
-                return True
-            else:
-                return False
-        except Exception as e:
-            logger.info('IsInDatabase crash')
+        logger.info('call IsInDatabase')
+        res = self.db['api_key'].find_one({'user_id':id})
+        if res:
+            return True
+        else:
+            return False
+
+        
             
     def GetMember(self, id):
-        try:
-            res = self.db['api_key'].find_one({'user_id':id})
-            if res:
-                return res['is_member']
-            else:
-                return False
-        except Exception as e:
-            logger.info('GetMember crash')
+        logger.info('call GetMember')
+        res = self.db['api_key'].find_one({'user_id':id})
+        if res:
+            return res['is_member']
+        else:
+            return False
+            
             
     def SetMember(self, data):
-        try:
-            
-            user_id = data
-            self.db['api_key'].update_one({
-                'user_id': user_id
-            }, {
-                '$set': {
-                    'is_member': True,
-                }
-            }, upsert=True)
-        except Exception as e:
-            logger.info('SetMember crash')          
+        logger.info('call SetMember')
+        user_id = data
+        self.db['api_key'].update_one({
+            'user_id': user_id
+        }, {
+            '$set': {
+                'is_member': True,
+            }
+        }, upsert=True)
+                   
         
     def DeleteMember(self, data):
-        try:
-            user_id = data
-            self.db['api_key'].update_one({
-                'user_id': user_id
-            }, {
-                '$set': {
-                    'is_member': False,
-                }
-            }, upsert=True)
-        except Exception as e:
-            logger.info('DeleteMember crash')
+        logger.info('call DeleteMember')
+        user_id = data
+        self.db['api_key'].update_one({
+            'user_id': user_id
+        }, {
+            '$set': {
+                'is_member': False,
+            }
+        }, upsert=True) 
             
     def load(self):
+        logger.info('call load')
         data = list(self.db['api_key'].find())
         res = {}
         for i in range(len(data)):
