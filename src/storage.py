@@ -1,5 +1,6 @@
 import json
 import datetime
+import sys
 
 
 class FileStorage:
@@ -36,45 +37,62 @@ class MongoStorage:
         }, upsert=True)
 
     def GetUserAPIKey(self, id):
-        res = self.db['api_key'].find_one({'user_id':id})
-        if res:
-            return res['api_key']
-        else:
-            return "Error"
+        try:
+            res = self.db['api_key'].find_one({'user_id':id})
+            if res:
+                return res['api_key']
+            else:
+                return "Error"
+        except Exception as e:
+            print("GetUserAPIKey",file=sys.stderr)
         
     def IsInDatabase(self, id):
-        res = self.db['api_key'].find_one({'user_id':id})
-        if res:
-            return True
-        else:
-            return False
-    def GetMember(self, data):
-        res = self.db['api_key'].find_one({'user_id':id})
-        if res:
-            return res['is_member']
-        else:
-            return False
-
+        try:
+            res = self.db['api_key'].find_one({'user_id':id})
+            if res:
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("IsInDatabase",file=sys.stderr)
+            
+    def GetMember(self, id):
+        try:
+            res = self.db['api_key'].find_one({'user_id':id})
+            if res:
+                return res['is_member']
+            else:
+                return False
+        except Exception as e:
+            print("GetMember",file=sys.stderr)
+            
     def SetMember(self, data):
-        user_id = data
-        self.db['api_key'].update_one({
-            'user_id': user_id
-        }, {
-            '$set': {
-                'is_member': True,
-            }
-        }, upsert=True)       
+        try:
+            
+            user_id = data
+            self.db['api_key'].update_one({
+                'user_id': user_id
+            }, {
+                '$set': {
+                    'is_member': True,
+                }
+            }, upsert=True)
+        except Exception as e:
+            print("SetMember",file=sys.stderr)               
         
     def DeleteMember(self, data):
-        user_id = data
-        self.db['api_key'].update_one({
-            'user_id': user_id
-        }, {
-            '$set': {
-                'is_member': False,
-            }
-        }, upsert=True)
-
+        try:
+            user_id = data
+            self.db['api_key'].update_one({
+                'user_id': user_id
+            }, {
+                '$set': {
+                    'is_member': False,
+                }
+            }, upsert=True)
+        except Exception as e:
+            print("DeleteMember",file=sys.stderr)
+            
     def load(self):
         data = list(self.db['api_key'].find())
         res = {}
