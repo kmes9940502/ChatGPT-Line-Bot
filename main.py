@@ -93,7 +93,7 @@ def handle_text_message(event):
             msg = TextSendMessage(text='Token 有效，註冊成功')
 
         #取得會員的註冊key
-        elif text.startswitch('/ＧetKey'):
+        elif text.startswith('/ＧetKey'):
             if user_id == os.getenv('ADMIN'):
                 find_user = text.strip()
                 userKey = storage.GetUserAPIKey(user_id)
@@ -105,7 +105,7 @@ def handle_text_message(event):
                 raise KeyError('User auth error')
             msg = TextSendMessage(text=return_message)
         #刪除會員
-        elif text.startswitch('/DeleteUser'):
+        elif text.startswith('/DeleteUser'):
             if user_id == os.getenv('ADMIN'):
                 user = text.strip()
                 if storage.GetMember(user):
