@@ -60,7 +60,7 @@ def handle_text_message(event):
 
     try:
         #使用者第一次註冊，給一個隨機key用來註冊會員
-        if storage.IsInDatabase(user_id):
+        if not storage.IsInDatabase(user_id):
             logger.info('FirstTimeUse')
             api_key = str(uuid.uuid4())
             logger.info(f'{user_id}: {api_key}')
