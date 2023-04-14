@@ -149,7 +149,7 @@ def handle_text_message(event):
         #    memory.append(user_id, 'assistant', url)
 
         else:
-            logger.info('else')
+            #logger.info('else')
             user_model = model_management[0]
             memory.append(user_id, 'user', text)
             url = website.get_url_from_text(text)
