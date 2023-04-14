@@ -90,7 +90,7 @@ class MongoStorage:
         }, upsert=True) 
             
     def load(self):
-        logger.info('call load')
+        logger.info('call load ')
         data = list(self.db['api_key'].find())
         res = {}
         for i in range(len(data)):
