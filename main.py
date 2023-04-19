@@ -109,6 +109,9 @@ def handle_text_message(event):
                 raise KeyError('User auth error')
             msg = TextSendMessage(text=return_message)
         #刪除會員
+        elif text.startswith('/我的id'):
+            msg = TextSendMessage(text=user_id)
+            
         elif text.startswith('/DeleteUser'):
             logger.info('DeleteUser')
             if user_id == os.getenv('ADMIN'):
