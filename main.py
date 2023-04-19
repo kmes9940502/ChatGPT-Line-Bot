@@ -101,6 +101,7 @@ def handle_text_message(event):
             if user_id == os.getenv('ADMIN'):
                 find_user = text.strip()
                 userKey = storage.GetUserAPIKey(find_user)
+                logger.info("Key: "+userKey)
                 if userKey != "Error":
                     return_message = userKey
                 else:
@@ -108,10 +109,10 @@ def handle_text_message(event):
             else:
                 raise KeyError('User auth error')
             msg = TextSendMessage(text=return_message)
-        #刪除會員
+        
         elif text.startswith('/我的id'):
             msg = TextSendMessage(text=user_id)
-            
+        #刪除會員   
         elif text.startswith('/DeleteUser'):
             logger.info('DeleteUser')
             if user_id == os.getenv('ADMIN'):
