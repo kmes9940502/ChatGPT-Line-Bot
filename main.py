@@ -96,8 +96,8 @@ def handle_text_message(event):
             msg = TextSendMessage(text='Token 有效，註冊成功')
 
         #取得會員的註冊key
-        elif text.startswith('/ＧetKey'):
-            logger.info('ＧetKey')
+        elif text.startswith('/GetKey'):
+            logger.info('/GetKey')
             if user_id == os.getenv('ADMIN'):
                 find_user = text.strip()
                 userKey = storage.GetUserAPIKey(user_id)
@@ -124,16 +124,17 @@ def handle_text_message(event):
         elif text.startswith('/指令說明'):
             #logger.info('指令說明')
             msg = TextSendMessage(text="指令：\n/註冊 + API Token\n👉 API Token 請先到 https://platform.openai.com/ 註冊登入後取得\n\n/系統訊息 + Prompt\n👉 Prompt 可以命令機器人扮演某個角色，例如：請你扮演擅長做總結的人\n\n/清除\n👉 當前每一次都會紀錄最後兩筆歷史紀錄，這個指令能夠清除歷史訊息\n\n/圖像 + Prompt\n👉 會調用 DALL∙E 2 Model，以文字生成圖像\n\n語音輸入\n👉 會調用 Whisper 模型，先將語音轉換成文字，再調用 ChatGPT 以文字回覆\n\n其他文字輸入\n👉 調用 ChatGPT 以文字回覆")
-
-        elif text.startswith('/系統訊息'):
+        
+        #elif text.startswith('/系統訊息'):
             #logger.info('系統訊息')
-            memory.change_system_message(user_id, text[5:].strip())
-            msg = TextSendMessage(text='輸入成功')
+            #memory.change_system_message(user_id, text[5:].strip())
+            #msg = TextSendMessage(text='輸入成功')
 
         elif text.startswith('/清除'):
             #logger.info('清除')
             memory.remove(user_id)
             msg = TextSendMessage(text='歷史訊息清除成功')
+        
 
         #elif text.startswith('/圖像'):
         #    prompt = text[3:].strip()
@@ -192,7 +193,7 @@ def handle_text_message(event):
         elif str(e).startswith('That model is currently overloaded with other requests.'):
             msg = TextSendMessage(text='已超過負荷，請稍後再試')
         else:
-            msg = TextSendMessage(text=str(e))
+            msg = TextSendMessage(text='伺服器發生問題，請稍後再試，或聯繫管理員')
     line_bot_api.reply_message(event.reply_token, msg)
 
 '''
