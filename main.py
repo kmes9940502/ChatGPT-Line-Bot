@@ -99,7 +99,7 @@ def handle_text_message(event):
         elif text.startswith('/GetKey'):
             logger.info('/GetKey')
             if user_id == os.getenv('ADMIN'):
-                find_user = text.strip()
+                find_user = text.strip(" ")[1]
                 userKey = storage.GetUserAPIKey(find_user)
                 logger.info("Enter: "+find_user)
                 logger.info("Key: "+userKey)
