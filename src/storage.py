@@ -42,6 +42,7 @@ class MongoStorage:
         logger.info('call GetUserAPIKey')
         res = self.db['api_key'].find_one({'user_id':id})
         if res!= None:
+            logger.info(res)
             return res['api_key']
         else:
             return "Error"
