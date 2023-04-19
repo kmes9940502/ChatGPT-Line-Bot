@@ -100,7 +100,7 @@ def handle_text_message(event):
             logger.info('/GetKey')
             if user_id == os.getenv('ADMIN'):
                 find_user = text.strip()
-                userKey = storage.GetUserAPIKey(user_id)
+                userKey = storage.GetUserAPIKey(find_user)
                 if userKey != "Error":
                     return_message = userKey
                 else:
