@@ -88,10 +88,11 @@ def handle_text_message(event):
             logger.info('註冊')
             try:
                 key = text.split(" ")[1].strip()
+                logger.info(key)
             except Exception as e:
                 msg = TextSendMessage(text='格式或字元錯誤，請重新輸入')
             if storage.GetMember(user_id):
-                raise Exception("已註冊會員")
+                raise Exception("您已經是會員囉！")
             if key == storage.GetUserAPIKey(user_id):
                 storage.SetMember(user_id)
             else:
