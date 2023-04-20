@@ -86,7 +86,10 @@ def handle_text_message(event):
         #升級為付費會員
         if text.startswith('/註冊'):
             logger.info('註冊')
-            key = text.strip()
+            try:
+                key = text.split(" ")[1].strip()
+            except Exception as e:
+                msg = TextSendMessage(text='格式或字元錯誤，請重新輸入')
             if storage.GetMember(user_id):
                 raise Exception("已註冊會員")
             if key == storage.GetUserAPIKey(user_id):
