@@ -198,7 +198,7 @@ def handle_text_message(event):
         elif str(e).startswith('That model is currently overloaded with other requests.'):
             msg = TextSendMessage(text='已超過負荷，請稍後再試')
         else:
-            msg = TextSendMessage(text='伺服器發生問題，請稍後再試，或聯繫管理員')
+            msg = TextSendMessage(text='伺服器發生問題，請稍後再試，如許久未改善，請聯繫管理員')
     line_bot_api.reply_message(event.reply_token, msg)
 
 '''
