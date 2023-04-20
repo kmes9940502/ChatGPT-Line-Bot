@@ -127,12 +127,12 @@ def handle_text_message(event):
                 else:
                     raise Exception('Member not found')
             else:
-                
                 raise KeyError('User auth error')
+            msg = TextSendMessage(text="取消註冊成功")
 
         elif text.startswith('/指令說明'):
             #logger.info('指令說明')
-            msg = TextSendMessage(text="指令：\n/註冊 + API Token\n👉 API Token 請先到 https://platform.openai.com/ 註冊登入後取得\n\n/系統訊息 + Prompt\n👉 Prompt 可以命令機器人扮演某個角色，例如：請你扮演擅長做總結的人\n\n/清除\n👉 當前每一次都會紀錄最後兩筆歷史紀錄，這個指令能夠清除歷史訊息\n\n/圖像 + Prompt\n👉 會調用 DALL∙E 2 Model，以文字生成圖像\n\n語音輸入\n👉 會調用 Whisper 模型，先將語音轉換成文字，再調用 ChatGPT 以文字回覆\n\n其他文字輸入\n👉 調用 ChatGPT 以文字回覆")
+            msg = TextSendMessage(text="指令：\n/註冊 <認證碼>\n👉 請先加入會員取得\n\n/清除\n👉 當前每一次都會紀錄最後兩筆歷史紀錄，這個指令能夠清除歷史訊息\n\n/我的id\n👉 獲得自己的user id\n如需註冊會員，請將獲得的id交給管理員以便進行認證\n\n其他文字輸入\n👉 調用 ChatGPT 以文字回覆")
         
         #elif text.startswith('/系統訊息'):
             #logger.info('系統訊息')
