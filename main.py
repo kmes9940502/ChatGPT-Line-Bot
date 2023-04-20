@@ -121,7 +121,7 @@ def handle_text_message(event):
         elif text.startswith('/DeleteUser'):
             logger.info('DeleteUser')
             if user_id == os.getenv('ADMIN'):
-                user = text.strip()
+                user = text.split(" ")[1].strip()
                 if storage.GetMember(user):
                     storage.DeleteMember(user)
                 else:
