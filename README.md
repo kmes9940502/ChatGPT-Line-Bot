@@ -1,4 +1,4 @@
-# This is a Line Bot Modified from ![ChatGPT-Line-Bot](https://github.com/TheExplainthis/ChatGPT-Line-Bot)
+# This is a project Modified from ![ChatGPT-Line-Bot](https://github.com/TheExplainthis/ChatGPT-Line-Bot)
 # ChatGPT Line Bot
 
 中文 | [English](README.en.md)
